@@ -1,6 +1,8 @@
 import firebase from "firebase/app";
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+
+// import firebase from "firebase/app";
+// import { initializeApp } from "firebase/app";
+// import { getFirestore } from "firebase/firestore";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -12,11 +14,11 @@ const firebaseConfig = {
   appId: "1:899376920314:web:dd7b9cdd78733777f9bb43",
 };
 
-// // Initialize Firebase
-// const app = !firebase.apps.length
-//   ? firebase.initializeApp(firebaseConfig)
-//   : firebase.app();
+// Initialize Firebase
+const app = !firebase.apps.length
+  ? firebase.initializeApp(firebaseConfig)
+  : firebase.app();
 
-// const db = getFirestore(app);
+const db = app.firestore();
 
-// export { db };
+export { db };
