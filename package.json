@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^1.0.5",
-    "@next-auth/firebase-adapter": "^0.1.2-pr.183-76202b42.8",
+    "@next-auth/firebase-adapter": "0.0.2-canary.207",
     "firebase": "^9.4.0",
     "next": "latest",
     "next-auth": "^3.29.0",
