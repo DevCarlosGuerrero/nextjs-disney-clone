@@ -5,20 +5,22 @@ import {
   PlusIcon,
   StarIcon,
 } from "@heroicons/react/solid";
-import { signIn, signOut, useSession } from "next-auth/client";
+import { getSession, signIn, signOut, useSession } from "next-auth/client";
 import { useRouter } from "next/router";
+import { async } from "@firebase/util";
 
 const Header = () => {
   const [session] = useSession();
-  const router = useRouter;
+  const router = useRouter();
 
   return (
-    <div className="sticky bg-[#040714] top-0 z-[1000] flex items-center px-10 h-[72px] md:px-12">
+    <header className="sticky bg-[#040714] top-0 z-[1000] flex items-center px-10 h-[72px] md:px-12">
       <Image
         src="/images/logo.svg"
         width={80}
         height={80}
         className="cursor-pointer"
+        onClick={() => router.push("/")}
       />
       {session && (
         <div className="hidden ml-10 md:flex items-center space-x-6">
@@ -63,7 +65,7 @@ const Header = () => {
           onClick={signOut}
         />
       )}
-    </div>
+    </header>
   );
 };
 
