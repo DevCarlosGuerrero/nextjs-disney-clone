@@ -4,6 +4,7 @@ import Head from "next/head";
 // Components
 import Header from "../components/Header";
 import Hero from "../components/Hero";
+import Slider from "../components/Slider";
 
 export default function Home() {
   const [session] = useSession();
@@ -14,7 +15,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      {!session ? <Hero /> : <main>APP</main>}
+      {!session ? (
+        <Hero />
+      ) : (
+        <main>
+          <Slider />
+        </main>
+      )}
     </div>
   );
 }
