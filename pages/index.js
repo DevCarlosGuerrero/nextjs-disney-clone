@@ -15,6 +15,7 @@ export default function Home({
   topRatedMovies,
   topRatedShows,
 }) {
+  console.log(popularMovies);
   const [session] = useSession();
   return (
     <div className="">
@@ -29,8 +30,8 @@ export default function Home({
         <main className="relative min-h-screen after:bg-home after:bg-center after:bg-cover after:bg-no-repeat after:bg-fixed after:absolute after:inset-0 after:z-[-1]">
           <Slider />
           <Brands />
-          <MoviesCollection results={popularMovies} />
-          <ShowsCollection results={popularShows} />
+          <MoviesCollection />
+          <ShowsCollection />
         </main>
       )}
     </div>
