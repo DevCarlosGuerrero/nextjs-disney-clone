@@ -71,10 +71,10 @@ export async function getServerSideProps(context) {
   return {
     props: {
       session,
-      popularMovies: popularMovies.results,
-      popularShows: popularShows.results,
-      topRatedMovies: topRatedMovies.results,
-      topRatedShows: topRatedShows.results,
+      popularMovies: JSON.parse(JSON.stringify(popularMovies)),
+      popularShows: JSON.parse(JSON.stringify(popularShows)),
+      topRatedMovies: JSON.parse(JSON.stringify(topRatedMovies)),
+      topRatedShows: JSON.parse(JSON.stringify(topRatedShows)),
     },
   };
 }
