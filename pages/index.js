@@ -30,8 +30,10 @@ export default function Home({
         <main className="relative min-h-screen after:bg-home after:bg-center after:bg-cover after:bg-no-repeat after:bg-fixed after:absolute after:inset-0 after:z-[-1]">
           <Slider />
           <Brands />
-          <MoviesCollection />
-          <ShowsCollection />
+          <MoviesCollection results={popularMovies} title="Popular Movies" />
+          <ShowsCollection results={popularShows} title="Popular Shows" />
+          <MoviesCollection results={topRatedMovies} title="Top Rated Movies" />
+          <ShowsCollection results={topRatedShows} title="Top Rated Shows" />
         </main>
       )}
     </div>
@@ -47,16 +49,16 @@ export async function getServerSideProps(context) {
     topRatedShowsRes,
   ] = await Promise.all([
     fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_KEY}&language=en-US&page=1`
     ),
     fetch(
-      `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.TMDB_KEY}&language=en-US&page=1`
     ),
     fetch(
-      `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.TMDB_KEY}&language=en-US&page=1`
     ),
     fetch(
-      `https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.TMDB_API_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.TMDB_KEY}&language=en-US&page=1`
     ),
   ]);
 
