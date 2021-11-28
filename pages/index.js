@@ -15,7 +15,7 @@ export default function Home({
   topRatedMovies,
   topRatedShows,
 }) {
-  // console.log(popularMovies);
+  console.log(popularMovies);
   const [session] = useSession();
   return (
     <div className="">
