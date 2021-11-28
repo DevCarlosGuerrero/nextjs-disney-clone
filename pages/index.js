@@ -15,7 +15,7 @@ export default function Home({
   topRatedMovies,
   topRatedShows,
 }) {
-  console.log(popularMovies);
+  // console.log(popularMovies);
   const [session] = useSession();
   return (
     <div className="">
@@ -73,6 +73,10 @@ export async function getServerSideProps(context) {
   return {
     props: {
       session,
+      // popularMovies: popularMovies.results,
+      // popularShows: popularShows.results,
+      // top_ratedMovies: topRatedMovies.results,
+      // top_ratedShows: topRatedShows.results,
       popularMovies: JSON.parse(JSON.stringify(popularMovies)),
       popularShows: JSON.parse(JSON.stringify(popularShows)),
       topRatedMovies: JSON.parse(JSON.stringify(topRatedMovies)),

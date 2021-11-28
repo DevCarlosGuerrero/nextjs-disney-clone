@@ -1,9 +1,7 @@
-import
-
 const MovieThumbnail = ({ result }) => {
   return (
     <div>
-      <Image />
+      <h1>Image</h1>
     </div>
   );
 };
