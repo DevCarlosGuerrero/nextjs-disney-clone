@@ -7,13 +7,17 @@ import Image from "next/image";
 import Header from "../../components/Header";
 import Hero from "../../components/Hero";
 
-// Icons
-import { PlusIcon } from "@heroicons/react/solid";
+// External Imports
+import { PlusIcon, XIcon } from "@heroicons/react/solid";
+import ReactPlayer from "react-player/lazy";
 
 const Movie = ({ result }) => {
   const [session] = useSession();
   const BASE_URL = "https://image.tmdb.org/t/p/original/";
   const [showPlayer, setShowPlayer] = useState(false);
+  const index = result.videos.results.findIndex(
+    (element) => element.type === "Trailer"
+  );
 
   return (
     <div>
@@ -45,21 +49,16 @@ const Movie = ({ result }) => {
                 <img
                   src="/images/play-icon-black.svg"
                   alt="play button"
-                  className="h-6 md:h-8"
+                  className="h-6"
                 />
                 <span className="uppercase font-medium tracking-wide">
                   Play
                 </span>
               </button>
               <button
-                className="flex items-center justify-center py-1.5 px-12 rounded text-xs md:text-base bg-black/30 text-[#f9f9f9] border border-[#f9f9f9] hover:bg-[#c6c6c6]"
+                className="flex items-center justify-center py-1.5 px-12 rounded text-xs md:text-base bg-black/30 text-[#f9f9f9] border border-[#f9f9f9] hover:bg-[#c6c6c6] hover:text-black"
                 onClick={() => setShowPlayer(true)}
               >
-                <img
-                  src="/images/play-icon-white.svg"
-                  alt="trailer play button"
-                  className="h-6 md:h-8"
-                />
                 <span className="uppercase font-medium tracking-wide">
                   Trailer
                 </span>
@@ -77,6 +76,38 @@ const Movie = ({ result }) => {
               {Math.floor(result.runtime / 60)}h {result.runtime % 60}m •{" "}
               {result.genres.map((genre) => genre.name + " ")}{" "}
             </p>
+            <p className="text-sm md:text-lg max-w-4xl">{result.overview}</p>
+          </div>
+
+          {/* Background Overlay */}
+          {showPlayer && (
+            <div className="absolute inset-0 bg-black opacity-50 h-full w-full z-50" />
+          )}
+
+          <div
+            className={`absolute top-3 inset-x-[7%] md:inset-x-[13%] rounded overflow-hidden transition duration-1000 ${
+              showPlayer ? "opacity-100 z-50" : "opacity-0"
+            }`}
+          >
+            <div className="flex items-center justify-between bg-black text-[#f9f9f9] p-3.5">
+              <span className="font-semibold">Play Trailer</span>
+              <div
+                className="cursor-pointer w-8 h-8 flex justify-center items-center rounded-lg opacity-50 hover:opacity-75 hover:bg-[#0f0f0f]"
+                onClick={() => setShowPlayer(false)}
+              >
+                <XIcon className="h-5" />
+              </div>
+            </div>
+            <div className="relative pt-[56.25%]">
+              <ReactPlayer
+                url={`https://www.youtube.com/watch?v=${result.videos?.results[index]?.key}`}
+                width="100%"
+                height="100%"
+                style={{ position: "absolute", top: "0", left: "0" }}
+                controls={true}
+                playing={showPlayer}
+              />
+            </div>
           </div>
         </section>
       )}
