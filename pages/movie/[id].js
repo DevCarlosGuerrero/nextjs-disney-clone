@@ -47,6 +47,7 @@ const Movie = ({ result }) => {
               layout="fill"
               objectFit="cover"
             />
+            <div className="bg-gradient-to-r from-black absolute inset-0 h-full w-full z-50" />
           </div>
           <div className="absolute inset-y-28 md:inset-y-auto md:bottom-10 inset-x-4 md:inset-x-12 space-y-6 z-50">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
