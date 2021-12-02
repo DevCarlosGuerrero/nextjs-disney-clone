@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getSession, useSession } from "next-auth/client";
 import Head from "next/head";
 
@@ -10,14 +10,22 @@ import Hero from "../../components/Hero";
 // External Imports
 import { PlusIcon, XIcon } from "@heroicons/react/solid";
 import ReactPlayer from "react-player/lazy";
+import { useRouter } from "next/router";
 
 const Movie = ({ result }) => {
   const [session] = useSession();
+  const router = useRouter();
   const BASE_URL = "https://image.tmdb.org/t/p/original/";
   const [showPlayer, setShowPlayer] = useState(false);
   const index = result.videos.results.findIndex(
     (element) => element.type === "Trailer"
   );
+
+  useEffect(() => {
+    if (!session) {
+      router.push("/");
+    }
+  }, []);
 
   return (
     <div>
