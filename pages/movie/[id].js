@@ -58,7 +58,7 @@ const Movie = ({ result }) => {
                 <img
                   src="/images/play-icon-black.svg"
                   alt="play button"
-                  className="h-6"
+                  className="h-3 sm:h-6"
                 />
                 <span className="uppercase font-medium tracking-wide">
                   Play
